@@ -61,7 +61,31 @@ public:
 
     void encounter(Creature x)
     {
-        // TO DO
+        cout << "\nYou've encountered " << x.get_name() << "!\n";
+        sleep(2);
+        if (x.get_value() < 0) {
+            cout << "You must fight for your life!\n";
+            sleep(2);
+            cout << "Fighting...\n";
+            sleep(2);
+            if (_hit_points + x.get_value() > 0) {
+                cout << "You have defeated " << x.get_name() << ",\n";
+                cout << "but you have suffered " << -x.get_value();
+                cout << " hit points of damage.\n";
+                _hit_points += x.get_value();
+            } else {
+                cout << x.get_name() << " has defeated you!\n";
+                _hit_points = 0;
+            }
+            sleep(2);
+        } else {
+            cout << "That was very fortunate!\n";
+            sleep(2);
+            cout << "You get " << x.get_value();
+            cout << " additional hit points.\n";
+            sleep(2);
+            _hit_points += x.get_value();
+        }
     }
 };
 
